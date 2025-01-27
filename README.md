@@ -12,11 +12,13 @@ The **Exercise Project** is a Go-based backend that provides gRPC-based CRUD ope
 - [Go](https://golang.org/doc/install) (1.20 or later recommended)
 - [Protocol Buffers Compiler (protoc)](https://grpc.io/docs/protoc-installation/)
 - [AWS DynamoDB Local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html)
+- Java Runtime Environment (JRE) for running DynamoDB Local
 
 ### Setting Up Local DynamoDB
-1. **Run DynamoDB Local with Docker**:
+1. **Run DynamoDB Local with Java**:
+   Navigate to the `local_ddb/` directory included in this repository and run the following command:
    ```bash
-   docker run -p 8000:8000 amazon/dynamodb-local
+   java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
    ```
 
 2. **Verify DynamoDB Local is Running**:
@@ -54,7 +56,7 @@ The **Exercise Project** is a Go-based backend that provides gRPC-based CRUD ope
    The server will start listening on `localhost:50051`.
 
 ### Testing the gRPC Server
-You can use the included `server/testClient/test_client.go` file to test the CRUD operations. The client provides a straightforward way to interact with the server. To run the test client:
+You can use the included `test_client.go` file to test the CRUD operations. The client provides a straightforward way to interact with the server. To run the test client:
 
 1. Navigate to the client directory:
    ```bash
@@ -74,5 +76,4 @@ The client will execute a series of CRUD operations and display the results in t
 - Extend functionality for more complex operations.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
+This project is licensed under the MIT License. 
