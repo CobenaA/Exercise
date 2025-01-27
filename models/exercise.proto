@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package models;
+
+option go_package = "./models";
+
+// Represents an exercise entity.
+message Exercise {
+  string id = 1;                  // UUID of the exercise.
+  string name = 2;                // Name of the exercise.
+  MusclesOption muscles_options = 3; // Primary and secondary muscles used.
+  ExerciseCategory category = 4;     // Enum indicating the category of the exercise.
+  string description = 5;         // Optional description.
+  string instruction = 6;         // Optional instruction.
+}
+
+// Represents the primary and secondary muscles involved in an exercise.
+message MusclesOption {
+  repeated Muscle primary_muscles = 1;   // List of primary muscles.
+  repeated Muscle secondary_muscles = 2; // List of secondary muscles.
+}
+
+// Represents a muscle entity.
+message Muscle {
+  string id = 1;                  // UUID of the muscle.
+  string name = 2;                // Name of the muscle.
+  repeated MuscleGroup groups = 3; // Muscle groups this muscle belongs to.
+}
+
+// Represents a group of muscles.
+message MuscleGroup {
+  string id = 1;   // UUID of the muscle group.
+  string name = 2; // Name of the muscle group.
+}
+
+// Enumeration for exercise categories.
+enum ExerciseCategory {
+  EXERCISE_CATEGORY_UNSPECIFIED = 0;
+  BARBELL = 1;
+  DUMBBELL = 2;
+  MACHINE = 3;
+  WEIGHTED_BODY_WEIGHT = 4;
+  ASSISTED_BODY_WEIGHT = 5;
+  REPS_ONLY = 6;    // Plyometric
+  DURATION = 7;     // Isometric
+  CARDIO = 8;
+}

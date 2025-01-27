@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package server;
+
+import "models/exercise.proto";
+
+option go_package = "./proto";
+
+// Service definition for CRUD operations
+service ExerciseService {
+  rpc CreateItem (CreateItemRequest) returns (CreateItemResponse);
+  rpc ReadItem (ReadItemRequest) returns (ReadItemResponse);
+  rpc UpdateItem (UpdateItemRequest) returns (UpdateItemResponse);
+  rpc DeleteItem (DeleteItemRequest) returns (DeleteItemResponse);
+}
+
+// Request and Response messages
+message CreateItemRequest {
+  string id = 1;
+  string name = 2;
+  string value = 3;
+}
+
+message CreateItemResponse {
+  bool success = 1;
+}
+
+message ReadItemRequest {
+  string id = 1;
+}
+
+message ReadItemResponse {
+  string name = 1;
+  string value = 2;
+}
+
+message UpdateItemRequest {
+  string id = 1;
+  string name = 2;
+  string value = 3;
+}
+
+message UpdateItemResponse {
+  bool success = 1;
+}
+
+message DeleteItemRequest {
+  string id = 1;
+}
+
+message DeleteItemResponse {
+  bool success = 1;
+}
